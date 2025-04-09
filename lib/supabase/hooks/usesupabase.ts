@@ -14,6 +14,7 @@ export const usesupabase = () => {
 
         let { data, error } = await supabase.from('products').select("*");
         if (data) {
+            console.log("datais"+ data);
             setproducts(data);
             console.log(data);
         }
