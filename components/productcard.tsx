@@ -3,12 +3,12 @@ import Image from "next/image";
 import Ratings from "./shared/ratings";
 import { useRouter } from 'next/navigation';
 
-const productcard = ({ products }: { products: any }) => {
-    const router=useRouter();
+const ProductCard = ({ products }: { products: any }) => {
+    const router = useRouter();
     return (
         <div>
             <div>
-                <div className='cursor-pointer' onClick={()=>{
+                <div className='cursor-pointer' onClick={() => {
                     router.push(`/product/${products.id}`)
                 }}>
                     <div className='flex items-center justify-center rounded-md bg-gray-100 h-[320px] overflow-hidden '>
@@ -19,10 +19,9 @@ const productcard = ({ products }: { products: any }) => {
                     <Ratings ratings={products.rating}/>
                     <p className='font-bold text-2xl'>{`$${products.price}`} </p>
                 </div>
-
             </div>
         </div>
     )
 }
 
-export default productcard
+export default ProductCard

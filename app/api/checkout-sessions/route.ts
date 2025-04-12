@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import Stripe from 'stripe';
+import Stripe from "stripe";
 
 interface CartItem {
   title: string;
@@ -7,8 +7,8 @@ interface CartItem {
   price: number;
 }
 
-const stripe = new Stripe(process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY!, {
-  apiVersion: '2023-10-16'
+const stripe = new Stripe(process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY!, { 
+  apiVersion: '2024-11-20.acacia'
 });
 
 export async function POST(req: NextRequest) {

@@ -2,7 +2,7 @@ import React from 'react';
 import Subtotal from './shared/subtotal';
 import { useRouter } from 'next/navigation';
 
-const proceedtobuy = ({ length, totalprice }: { length: number, totalprice: number }) => {
+const ProceedToBuy = ({ length, totalprice }: { length: number, totalprice: number }) => {
     const router = useRouter();
     return (
         <div className='w-[25%] h-fit border border-gray-300 ml-4'>
@@ -15,9 +15,8 @@ const proceedtobuy = ({ length, totalprice }: { length: number, totalprice: numb
                     }} className='bg-[#FFD814] w-full py-1 rounded-md my-4 hover:text-[#007600] '>Proceed to Buy</button>
                 </div>
             </div>
-
         </div>
     )
 }
 
-export default proceedtobuy
+export default ProceedToBuy
