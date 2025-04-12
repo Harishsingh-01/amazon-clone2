@@ -34,7 +34,7 @@ export async function POST(req: NextRequest) {
     },
     line_items: arrangeItems,
     mode: 'payment',
-    success_url: `${process.env.HOST}/success`,
+    success_url: `https://amazon-clone2-git-main-harishsingh-01s-projects.vercel.app/success`,
     cancel_url: `${process.env.HOST}/checkout`,
     metadata: {
       email,
