@@ -7,16 +7,18 @@ import { usesupabase } from '@/lib/supabase/hooks/usesupabase';
 const ProductPage = () => {
     const { id } = useParams();
     const { singleproduct, getsingleproduct } = usesupabase();
-    useEffect(() => {
-        getsingleproduct(Number(id));
 
-    }, [])
+    useEffect(() => {
+        if (id) {
+            getsingleproduct(Number(id));
+        }
+    }, [id, getsingleproduct]);
+
     return (
         <div>
-            <Singleproduct singleproduct={singleproduct}/>
-            <h1>{id}</h1>
+            <Singleproduct singleproduct={singleproduct} />
         </div>
-    )
-}
+    );
+};
 
-export default ProductPage
+export default ProductPage;

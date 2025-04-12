@@ -11,7 +11,8 @@ export const usesupabase = () => {
 
 
     const getdatafromsupabase = async () => {
-        const { data, error } = await supabase.from('products').select("*");
+
+        let { data, error } = await supabase.from('products').select("*");
         if (data) {
             console.log("datais"+ data);
             setproducts(data);
@@ -24,7 +25,8 @@ export const usesupabase = () => {
 
 
     const getfiltereddata = async (query: string) => {
-        const { data, error } = await supabase.from('products').select("*").or(`title.ilike.%${query}%, description.ilike.%${query}% , category.ilike.%${query}%`);
+
+        let { data, error } = await supabase.from('products').select("*").or(`title.ilike.%${query}%, description.ilike.%${query}% , category.ilike.%${query}%`);
         if (data) {
             setfilterdata(data);
             console.log(data);
@@ -36,7 +38,7 @@ export const usesupabase = () => {
 
 
     const getsingleproduct = async (id: number) => {
-        const { data, error } = await supabase.from('products').select('*').eq('id', id);
+        let { data, error } = await supabase.from('products').select('*').eq('id', id);
         if (data) {
             setsingleproduct(data);
         }
@@ -46,7 +48,7 @@ export const usesupabase = () => {
     }
 
     const getmensclothing = async () => {
-        const { data, error } = await supabase.from('products').select('*').ilike('category', `men's clothing`)
+        let { data, error } = await supabase.from('products').select('*').ilike('category', `men's clothing`)
         if (data) {
             setmensproduct(data);
         }
@@ -55,7 +57,7 @@ export const usesupabase = () => {
         }
     }
     const getwomensclothing = async () => {
-        const { data, error } = await supabase.from('products').select('*').ilike('category', `women's clothing`)
+        let { data, error } = await supabase.from('products').select('*').ilike('category', `women's clothing`)
         if (data) {
             setwomensproduct(data);
         }

@@ -4,19 +4,21 @@ import { useParams } from 'next/navigation';
 import React, { useEffect } from 'react';
 import Searchresult from '@/components/searchresult';
 
-const page = () => {
-    const {query}=useParams();
-    const { filterdata, getfiltereddata}=usesupabase();
+const SearchPage = () => {
+    const { query } = useParams();
+    const { filterdata, getfiltereddata } = usesupabase();
 
-    useEffect(()=>{
-        getfiltereddata(query.toString());
-    },[]);
-    console.log(filterdata);
-  return (
-    <div>
-        <Searchresult filterdata={filterdata}/>
-    </div>
-  )
-}
+    useEffect(() => {
+        if (query) {
+            getfiltereddata(query.toString());
+        }
+    }, [query, getfiltereddata]);
 
-export default page
+    return (
+        <div>
+            <Searchresult filterdata={filterdata} />
+        </div>
+    );
+};
+
+export default SearchPage;
