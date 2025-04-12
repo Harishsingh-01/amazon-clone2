@@ -2,9 +2,8 @@ import React from 'react'
 import Image from 'next/image';
 import { useAppSelector } from '@/lib/supabase/hooks/redux';
 import { getcart } from '@/redux/cartslice';
-import Ordersummary from "./ordersummary";
 
-const deliveryaddress = () => {
+const DeliveryAddress = () => {
     const cart = useAppSelector(getcart);
 
     return (
@@ -26,9 +25,9 @@ const deliveryaddress = () => {
                     <h1 className='font-bold text-lg'>2. Items And Delivery</h1>
                 </div>
                 {
-                    cart.map((products: any) => {
+                    cart.map((products: any, index: number) => {
                         return (
-                            <div className='my-4'>
+                            <div key={index} className='my-4'>
                                 <div className='flex '>
                                     <Image src={products.image} width={130} height={130} alt={products.title} />
                                     <div className='ml-4'>
@@ -36,7 +35,6 @@ const deliveryaddress = () => {
                                         <p className='text-2xl font-bold py-2'>{`$${products.price}`}</p>
                                     </div>
                                 </div>
-
                             </div>
                         )
                     })
@@ -46,4 +44,4 @@ const deliveryaddress = () => {
     )
 }
 
-export default deliveryaddress
+export default DeliveryAddress
