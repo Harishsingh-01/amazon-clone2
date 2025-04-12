@@ -3,12 +3,11 @@ import prime from "../public/prime-logo.png"
 import Image from 'next/image';
 import { useAppDispatch } from '@/lib/supabase/hooks/redux';
 import { addtocart } from '@/redux/cartslice';
-import { Provider } from 'react-redux';
 import { useRouter } from 'next/navigation';
 
-const addtocartcontainer = ({products}:{products:any}) => {
-    const dispatch= useAppDispatch();
-    const router=useRouter();
+const AddToCartContainer = ({products}:{products:any}) => {
+    const dispatch = useAppDispatch();
+    const router = useRouter();
     return (
         <div className='border border-gray-300 rounded-md h-fit text-sm'>
             <div className='mx-5 mt-2'>
@@ -24,10 +23,8 @@ const addtocartcontainer = ({products}:{products:any}) => {
                 }} className='bg-[#FFd814] w-full rounded-full py-2 mt-2 '>Add to Cart</button>
                 <button className='bg-[#FFA41C] w-full rounded-full py-2 mt-2 '>Buy Now</button>
             </div>
-
-
         </div>
     )
 }
 
-export default addtocartcontainer
+export default AddToCartContainer

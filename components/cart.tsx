@@ -5,12 +5,12 @@ import Proceedtobuy from './proceedtobuy'
 import {useAppSelector } from '@/lib/supabase/hooks/redux';
 import { getcart } from '@/redux/cartslice';
 
-const cart = () => {
+const Cart = () => {
     const cart = useAppSelector(getcart);
 
-    let totalprice=0;
-    cart.forEach((item:any)=>{
-        totalprice+= item.price*item.quantity;
+    let totalprice = 0;
+    cart.forEach((item:any) => {
+        totalprice += item.price * item.quantity;
     });
     return (
         <div className='w-[80%] mx-auto mt-10'>
@@ -18,9 +18,8 @@ const cart = () => {
                 <Shoppingcart cart={cart} totalprice={totalprice} />
                 <Proceedtobuy length={cart.length} totalprice={totalprice} />
             </div>
-
         </div>
     )
 }
 
-export default cart
+export default Cart

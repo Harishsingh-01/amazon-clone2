@@ -1,7 +1,7 @@
 import React from 'react'
 import Productcard from './productcard'
 
-const searchresult = ({filterdata}:{filterdata:any}) => {
+const SearchResult = ({filterdata}:{filterdata:any}) => {
   return (
     <div className='w-[80%] mx-auto'>
         <div className='mt-10 '>
@@ -18,7 +18,6 @@ const searchresult = ({filterdata}:{filterdata:any}) => {
                             </div>
                         )
                     })
-
                 }
             </div>
         </div>
@@ -26,4 +25,4 @@ const searchresult = ({filterdata}:{filterdata:any}) => {
   )
 }
 
-export default searchresult
+export default SearchResult

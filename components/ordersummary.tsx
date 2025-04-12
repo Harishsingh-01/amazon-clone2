@@ -8,30 +8,30 @@ import { getcart } from '@/redux/cartslice';
 
 const stripepromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISH_KEY!);
 
-const ordersummary = () => {
+const OrderSummary = () => {
     const cart = useAppSelector(getcart)
 
-    const Createstripsession = async () => {
-        const { data: { user } } = await supabase.auth.getUser();
-        const stripe = await stripepromise;
+    const createStripeSession = async () => {
+        try {
+            const { data: { user } } = await supabase.auth.getUser();
+            const stripe = await stripepromise;
 
-        const checkoutsession = await axios.post("/api/checkout-sessions", {
-            items: cart,
-            email: user?.email
-        })
+            const checkoutSession = await axios.post("/api/checkout-sessions", {
+                items: cart,
+                email: user?.email
+            });
 
-        //redirect to checkout session
-        const result=await stripe?.redirectToCheckout({
-            sessionId:checkoutsession.data.id,
-        }) 
-
-        if (result?.error){
-            console.log(result.error.message)
+            // Redirect to checkout session
+            if (stripe) {
+                await stripe.redirectToCheckout({
+                    sessionId: checkoutSession.data.id,
+                });
+            }
+        } catch (error) {
+            console.error("Error creating checkout session:", error);
         }
-
-
-
     }
+
     return (
         <div className='border border-gray-300 p-4 m-5 h-fit'>
             <div>
@@ -56,10 +56,10 @@ const ordersummary = () => {
 
                     </div>
                 </div>
-                <button onClick={Createstripsession} className='bg-[#FFD814] w-full rounded-md my-3 px-4 py-1'>Place your Order Now </button>
+                <button onClick={createStripeSession} className='bg-[#FFD814] w-full rounded-md my-3 px-4 py-1'>Place your Order Now </button>
             </div>
         </div>
     )
 }
 
-export default ordersummary
+export default OrderSummary
